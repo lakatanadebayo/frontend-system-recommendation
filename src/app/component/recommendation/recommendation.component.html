@@ -1,0 +1,76 @@
+<div class="container my-4">
+  <form [formGroup]="learningPathForm" (ngSubmit)="submitLearningPathFormForm()" class="card p-4 shadow-sm rounded-3">
+    <div class="row g-3 align-items-end">
+      <div class="col-12 col-md-4">
+        <label for="username" class="form-label fw-bold">
+          Nom d'utilisateur <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control"
+          placeholder="Entrez un nom d'utilisateur"
+          aria-required="true">
+        <div *ngIf="learningPathForm.get('username')?.invalid && learningPathForm.get('username')?.touched" class="text-danger small mt-1">
+          Le nom d'utilisateur est requis.
+        </div>
+      </div>
+      <div class="col-auto">
+        <button
+          type="submit"
+          class="btn btn-success px-4"
+          [disabled]="learningPathForm.invalid">
+          Rechercher
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="learningPaths.length > 0; else noResults" class="table-responsive mt-5 shadow-sm p-3 rounded-3">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-light">
+      <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Langue</th>
+        <th scope="col">Niveau</th>
+        <th scope="col">Domaine</th>
+        <th scope="col">Ressources</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let lp of learningPaths">
+        <td class="fw-semibold">{{ lp.title }}</td>
+        <td>{{ lp.language | languageLabel }}</td>
+        <td>{{ lp.level }}</td>
+        <td>{{ lp.domain }}</td>
+        <td>
+          <ng-container *ngFor="let r of lp.resources">
+            <div class="mb-2">
+              <span class="fw-bold">Nom : </span> {{ r.name }} <br>
+              <span class="fw-bold">Type : </span>
+              <span class="badge bg-primary">{{ r.type }}</span> <br>
+              <span class="fw-bold">URL : </span>
+              <a [href]="r.url" target="_blank" rel="noopener noreferrer">{{ r.url }}</a>
+              <div class="mt-2">
+                <button
+                  [hidden]="!localAuthStatus"
+                  (click)="terminerCours(lp.id)"
+                  class="btn btn-success btn-sm shadow-sm rounded-pill">Terminer le cours
+                </button>
+              </div>
+            </div>
+            <hr *ngIf="lp.resources.length > 1 && r !== lp.resources[lp.resources.length-1]">
+          </ng-container>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noResults>
+    <div class="alert alert-info mt-4" role="alert">
+      Aucun parcours trouvé. Essayez avec un autre nom d'utilisateur.
+    </div>
+  </ng-template>
+</div>

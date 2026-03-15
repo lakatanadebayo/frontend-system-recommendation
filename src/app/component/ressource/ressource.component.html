@@ -1,0 +1,52 @@
+<div class="container my-2">
+
+  <!-- Table des ressources -->
+  <div *ngIf="learningPaths.length > 0; else noUsers" class="table-responsive mt-5 shadow-sm p-3 rounded-3">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-light">
+      <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Niveau</th>
+        <th scope="col">Domaine</th>
+        <th scope="col">Langue</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Prerequis</th>
+        <th>Ressources</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let l of learningPaths">
+        <td class="fw-semibold">{{ l.title }}</td>
+        <td>{{ l.level }}</td>
+        <td>{{ l.domain }}</td>
+        <td>{{ l.language }}</td>
+        <td>{{ l.content }}</td>
+        <td>
+          <ng-container *ngFor="let course of l.prerequisiteCourseIds; let last = last">
+            <span class="badge bg-secondary me-1">{{ course }}</span>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let r of l.resources">
+            <div class="mb-2">
+              <span class="fw-bold">Nom : </span> {{ r.name }} <br>
+              <span class="fw-bold">Type : </span>
+              <span class="badge bg-primary">{{ r.type }}</span> <br>
+              <span class="fw-bold">URL : </span>
+              <a [href]="r.url" target="_blank" rel="noopener noreferrer">{{ r.url }}</a>
+            </div>
+            <hr *ngIf="l.resources.length > 1 && r !== l.resources[l.resources.length-1]">
+          </ng-container>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Aucune ressource -->
+  <ng-template #noUsers>
+    <div class="alert alert-info mt-4" role="alert">
+      Aucun cours trouvé. Ajoutez-en un via le formulaire.
+    </div>
+  </ng-template>
+</div>
