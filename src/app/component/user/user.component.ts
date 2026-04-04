@@ -18,6 +18,18 @@ export class UserComponent implements OnInit {
   userForm: FormGroup
   id: any = null
 
+  currentFonction: {} = {}
+  currentIndex = -1
+
+  page = 1
+  count = 0
+  pageSize = 10
+
+  searchTerm: string = ''
+
+  sortColumn = ''
+  sortDirection = 'asc'
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute, private dataService: DataService) {
   }
 
@@ -119,6 +131,57 @@ export class UserComponent implements OnInit {
 
   submitUserForm(){
     this.saveUser()
+  }
+
+  getRequestParams(page: number, pageSize: number): any {
+    let params: any = {};
+
+    if (page) {
+      params['page'] = page - 1;
+    }
+
+    if (pageSize) {
+      params['size'] = pageSize;
+    }
+
+    return params;
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.getAllUser();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.getAllUser();
+  }
+
+  refreshList(): void {
+    this.getAllUser();
+    this.currentFonction = {};
+    this.currentIndex = -1;
+  }
+
+  sortBy(column: string) {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.users.sort((a, b) => {
+      const valA = a[column]?.toString().toLowerCase() || '';
+      const valB = b[column]?.toString().toLowerCase() || '';
+
+      if (this.sortDirection === 'asc') {
+        return valA.localeCompare(valB);
+      } else {
+        return valB.localeCompare(valA);
+      }
+    });
   }
 
 }

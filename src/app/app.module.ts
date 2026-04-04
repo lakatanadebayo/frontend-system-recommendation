@@ -11,6 +11,7 @@ import {TopMenuModule} from "./module/top-menu/top-menu.module";
 import {AuthenticationModule} from "./module/authentication/authentication.module";
 import {HomeModule} from "./module/home/home.module";
 import {RessourceModule} from "./module/home/ressource/ressource.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import {RessourceModule} from "./module/home/ressource/ressource.module";
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    NgxPaginationModule,
     UserModule,
     RecommendationModule,
     RessourceModule,

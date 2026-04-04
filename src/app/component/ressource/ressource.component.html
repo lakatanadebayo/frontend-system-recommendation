@@ -7,7 +7,7 @@
       <tr>
         <th scope="col">Titre</th>
         <th scope="col">Niveau</th>
-        <th scope="col">Domaine</th>
+        <th scope="col" (click)="sortBy('domain')">Domaine</th>
         <th scope="col">Langue</th>
         <th scope="col">Contenu</th>
         <th scope="col">Prerequis</th>
@@ -15,7 +15,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let l of learningPaths">
+      <tr *ngFor="let l of learningPaths | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }">
         <td class="fw-semibold">{{ l.title }}</td>
         <td>{{ l.level }}</td>
         <td>{{ l.domain }}</td>
@@ -27,7 +27,7 @@
           </ng-container>
         </td>
         <td>
-          <ng-container *ngFor="let r of l.resources">
+          <ng-container *ngFor="let r of l.resources; let i = index">
             <div class="mb-2">
               <span class="fw-bold">Nom : </span> {{ r.name }} <br>
               <span class="fw-bold">Type : </span>
@@ -41,6 +41,9 @@
       </tr>
       </tbody>
     </table>
+    <div class="col-md-12 text-center mt-3">
+      <pagination-controls previousLabel="Précédent" nextLabel="Suivant" [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
   </div>
 
   <!-- Aucune ressource -->

@@ -17,6 +17,18 @@ export class RessourceComponent {
   learningPaths: LearningPath[] = []
   id: any = null
 
+  currentFonction: {} = {}
+  currentIndex = -1
+
+  page = 1
+  count = 0
+  pageSize = 10
+
+  searchTerm: string = ''
+
+  sortColumn = ''
+  sortDirection = 'asc'
+
   constructor(private formBuilder: FormBuilder, private ressourceService: RessourceService, private router: Router, private activatedRoute: ActivatedRoute, private dataService: DataService) {
   }
 
@@ -31,6 +43,57 @@ export class RessourceComponent {
       },
       error:error => console.log(error)
     })
+  }
+
+  getRequestParams(page: number, pageSize: number): any {
+    let params: any = {};
+
+    if (page) {
+      params['page'] = page - 1;
+    }
+
+    if (pageSize) {
+      params['size'] = pageSize;
+    }
+
+    return params;
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.getAllLearningPath();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.getAllLearningPath();
+  }
+
+  refreshList(): void {
+    this.getAllLearningPath();
+    this.currentFonction = {};
+    this.currentIndex = -1;
+  }
+
+  sortBy(column: string) {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.learningPaths.sort((a, b) => {
+      const valA = a[column]?.toString().toLowerCase() || '';
+      const valB = b[column]?.toString().toLowerCase() || '';
+
+      if (this.sortDirection === 'asc') {
+        return valA.localeCompare(valB);
+      } else {
+        return valB.localeCompare(valA);
+      }
+    });
   }
 
 }

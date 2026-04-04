@@ -87,7 +87,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let u of users">
+      <tr *ngFor="let u of users | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }">
         <td class="fw-semibold">{{ u.username }}</td>
         <td>{{ u.level }}</td>
         <td>{{ u.domain }}</td>
@@ -106,6 +106,9 @@
       </tr>
       </tbody>
     </table>
+    <div class="col-md-12 text-center mt-3">
+      <pagination-controls previousLabel="Précédent" nextLabel="Suivant" [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
   </div>
 
   <!-- Aucun utilisateur -->

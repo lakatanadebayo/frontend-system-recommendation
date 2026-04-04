@@ -4,6 +4,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserRoutingModule} from "./user-routing.module";
 import {UserComponent} from "../../../component/user/user.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 
@@ -14,7 +15,8 @@ import {UserComponent} from "../../../component/user/user.component";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    UserRoutingModule
+    UserRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class UserModule { }
