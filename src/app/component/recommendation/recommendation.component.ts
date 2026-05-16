@@ -18,6 +18,9 @@ export class RecommendationComponent implements OnInit, OnDestroy {
   localAuthStatus: boolean = false
   localUser: User
   learningPaths: LearningPath[] = []
+  domains: String[] = []
+  levels: String[] = []
+  languages: String[] = []
   learningPathForm: FormGroup
 
   private destroy$ = new Subject<void>()

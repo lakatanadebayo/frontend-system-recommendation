@@ -82,7 +82,7 @@
         <th scope="col">Domaine</th>
         <th scope="col">Langue</th>
         <th scope="col">Cours suivis</th>
-        <th scope="col">Tags</th>
+        <!--<th scope="col">Tags</th>-->
         <th>Action</th>
       </tr>
       </thead>
@@ -97,11 +97,11 @@
             <span class="badge bg-secondary me-1">{{ course }}</span>
           </ng-container>
         </td>
-        <td>
+        <!--<td>
           <ng-container *ngFor="let tag of u.completedCoursesTags; let last = last">
             <span class="badge bg-info text-dark me-1">{{ tag }}</span>
           </ng-container>
-        </td>
+        </td>-->
         <td><button type="button" class="btn btn-primary" (click)="updateUser(u.id)"><i class="fa fa-edit"></i></button></td>
       </tr>
       </tbody>

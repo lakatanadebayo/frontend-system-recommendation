@@ -15,4 +15,8 @@ export class RecommendationService {
   getRecommendationByUsername(username: string): Observable<any> {
     return this.httpClient.get(this.baseUrl+"/recommendations/"+username);
   }
+
+  getRecommendation(domain: string, level: string, language: string): Observable<any> {
+    return this.httpClient.get(this.baseUrl+"/recommendations/"+domain);
+  }
 }
