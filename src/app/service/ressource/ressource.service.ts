@@ -24,6 +24,10 @@ export class RessourceService {
     return this.httpClient.get(this.baseUrl+"/cours/find/all")
   }
 
+  getLearningPathById(id: String): Observable<any> {
+    return this.httpClient.get(this.baseUrl+"/cours/find/"+id)
+  }
+
   getAllDomains(): Observable<any> {
     return this.httpClient.get(this.baseUrl+"/cours/find/all/domains")
   }
@@ -34,9 +38,5 @@ export class RessourceService {
 
   getAllLanguages(): Observable<any> {
     return this.httpClient.get(this.baseUrl+"/cours/find/all/languages")
-  }
-
-  getLearningPathById(id: number): Observable<any> {
-    return this.httpClient.get(this.baseUrl+"/cours/get/"+id)
   }
 }

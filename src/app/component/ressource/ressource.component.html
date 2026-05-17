@@ -10,7 +10,8 @@
         <th scope="col" (click)="sortBy('domain')">Domaine</th>
         <th scope="col">Langue</th>
         <th scope="col">Contenu</th>
-        <th scope="col">Prerequis</th>
+        <!--<th scope="col">Prerequis</th>-->
+        <th scope="col">Objectif</th>
         <th>Ressources</th>
       </tr>
       </thead>
@@ -21,11 +22,12 @@
         <td>{{ l.domain }}</td>
         <td>{{ l.language }}</td>
         <td>{{ l.content }}</td>
-        <td>
+        <!--<td>
           <ng-container *ngFor="let course of l.prerequisiteCourseIds; let last = last">
             <span class="badge bg-secondary me-1">{{ course }}</span>
           </ng-container>
-        </td>
+        </td>-->
+        <td>{{ l.objectives }}</td>
         <td>
           <ng-container *ngFor="let r of l.resources; let i = index">
             <div class="mb-2">

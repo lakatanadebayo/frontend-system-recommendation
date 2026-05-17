@@ -1,58 +1,45 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-  <form [formGroup]="authenticationForm" (ngSubmit)="submitAuthenticationForm()"
-        class="card p-4 shadow-sm rounded-3" style="min-width: 400px;">
-    <div class="row g-3 align-items-end">
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-card">
 
-      <!-- Message d'erreur -->
-      <div class="col-12" *ngIf="!isAuthenticated && authenticationErrorMessage">
-        <div class="text-center text-danger my-2">
-          {{ authenticationErrorMessage }}
-        </div>
+    <div class="left-section">
+      <div class="brand">
+        <h1>DevPath</h1>
+        <p>Plateforme intelligente d’apprentissage pour développeurs</p>
       </div>
-
-      <!-- Username -->
-      <div class="col-12">
-        <label for="username" class="form-label fw-bold">Nom d'utilisateur *</label>
-        <input type="text"
-               id="username"
-               formControlName="username"
-               class="form-control"
-               placeholder="Entrez votre nom d'utilisateur"
-               [class.is-invalid]="authenticationForm.controls['username'].invalid && (authenticationForm.controls['username'].touched || authenticationForm.controls['username'].dirty)">
-        <div *ngIf="authenticationForm.controls['username'].invalid && (authenticationForm.controls['username'].touched || authenticationForm.controls['username'].dirty)">
-          <small class="text-danger" *ngIf="authenticationForm.controls['username'].errors?.['required']">
-            Le nom d'utilisateur est requis
-          </small>
-        </div>
-      </div>
-
-      <!-- Password -->
-      <div class="col-12">
-        <label for="password" class="form-label fw-bold">Mot de passe *</label>
-        <input type="password"
-               id="password"
-               formControlName="password"
-               class="form-control"
-               placeholder="Entrez votre mot de passe"
-               [class.is-invalid]="authenticationForm.controls['password'].invalid && (authenticationForm.controls['password'].touched || authenticationForm.controls['password'].dirty)">
-        <div *ngIf="authenticationForm.controls['password'].invalid && (authenticationForm.controls['password'].touched || authenticationForm.controls['password'].dirty)">
-          <small class="text-danger" *ngIf="authenticationForm.controls['password'].errors?.['required']">
-            Le mot de passe est requis
-          </small>
-        </div>
-      </div>
-
-      <!-- Boutons -->
-      <div class="col-12 d-flex justify-content-between mt-3">
-        <button type="submit" class="btn btn-primary px-4" [disabled]="authenticationForm.invalid">Se connecter</button>
-        <button type="button" class="btn btn-outline-danger px-4" (click)="home()">Retour</button>
-      </div>
-
-      <!-- Lien inscription -->
-      <div class="col-12 text-center mt-3">
-        Nouveau ? <a routerLink="/app/registration">S'inscrire</a>
-      </div>
-
+      <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="developer"/>
     </div>
-  </form>
+
+    <div class="right-section">
+      <div class="form-container">
+
+        <h2>Connexion</h2>
+        <p class="subtitle">Connectez-vous à votre espace</p>
+
+        <form [formGroup]="authenticationForm" (ngSubmit)="submitAuthenticationForm()">
+
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" formControlName="username" placeholder="exemple@email.com"/>
+          </div>
+
+          <div class="input-group">
+            <label>Mot de passe</label>
+            <input type="password" formControlName="password" placeholder="********"/>
+          </div>
+
+          <div class="options">
+            <label><input type="checkbox" />Se souvenir de moi</label>
+            <a href="#">Mot de passe oublié ?</a>
+          </div>
+
+          <button type="submit" [disabled]="authenticationForm.invalid">Se connecter</button>
+
+        </form>
+
+        <div class="register-link">Vous n'avez pas de compte ?<a href="#">Créer un compte</a></div>
+      </div>
+    </div>
+
+  </div>
 </div>

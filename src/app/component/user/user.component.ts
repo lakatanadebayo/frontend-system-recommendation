@@ -4,6 +4,10 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../service/data/data.service";
+import {UserDto} from "../../entity/UserDto";
+import {RessourceService} from "../../service/ressource/ressource.service";
+import {LearningPath} from "../../entity/LearningPath";
+import {forkJoin, map, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-user',
@@ -15,6 +19,9 @@ export class UserComponent implements OnInit {
   localIsUpdateProcess: boolean
   user: User
   users: User[] = []
+  userDtos: UserDto[] = []
+  domains: string[] = []
+  learningPaths: LearningPath[] = []
   userForm: FormGroup
   id: any = null
 
@@ -30,12 +37,13 @@ export class UserComponent implements OnInit {
   sortColumn = ''
   sortDirection = 'asc'
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute, private dataService: DataService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private ressourceService: RessourceService, private router: Router, private activatedRoute: ActivatedRoute, private dataService: DataService) {
   }
 
   ngOnInit(): void {
     this.getIsUpdateProcessFromDataService()
     this.getAllUser()
+    this.getAllDomains()
     this.initUserForm()
   }
 
@@ -116,7 +124,26 @@ export class UserComponent implements OnInit {
   getAllUser(){
     this.userService.getAllUser().subscribe({
       next:usersFromApi => {
+        console.log(usersFromApi)
+        this.userDtos = usersFromApi
+      },
+      error:error => console.log(error)
+    })
+  }
+
+  getAllUserDto() {
+    this.userService.getAllUser().subscribe({
+      next:usersFromApi => {
         this.users = usersFromApi
+      },
+      error:error => console.log(error)
+    })
+  }
+
+  getAllDomains(){
+    this.userService.getAllDomains().subscribe({
+      next:domainsFromApi => {
+        this.domains = domainsFromApi
       },
       error:error => console.log(error)
     })

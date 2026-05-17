@@ -29,20 +29,22 @@
       <!-- Domain -->
       <div class="col-12 col-md-4">
         <label for="domain" class="form-label fw-bold">Domaine *</label>
-        <input type="text" id="domain" formControlName="domain" class="form-control" placeholder="Entrez un domaine">
+        <select id="domain" formControlName="domain" class="form-select">
+          <option *ngFor="let d of domains" value="{{d}}">{{d}}</option>
+        </select>
       </div>
 
       <!-- Langue -->
       <div class="col-12 col-md-4">
         <label for="language" class="form-label fw-bold">Langue *</label>
-        <select id="language" class="form-select" formControlName="language">
+        <select id="language" formControlName="language" class="form-select">
           <option value="">Sélectionnez une langue</option>
           <option value="fr">Français</option>
           <option value="en">Anglais</option>
         </select>
       </div>
 
-      <!-- Completed Courses -->
+      <!-- Completed Courses
       <div class="col-12 col-md-4">
         <label for="completedCoursesIds" class="form-label fw-bold">Cours déjà suivis</label>
         <div class="input-group">
@@ -50,7 +52,6 @@
           <button type="button" class="btn btn-primary" (click)="addCourseId(courseIdInput.value); courseIdInput.value=''">Ajouter</button>
         </div>
 
-        <!-- Badges affichant la liste -->
         <div class="d-flex flex-wrap gap-2">
           <span *ngFor="let c of completedCoursesIds.controls; let i = index"
                 class="badge bg-secondary d-flex align-items-center p-2">
@@ -62,7 +63,7 @@
             </button>
           </span>
         </div>
-      </div>
+      </div> -->
 
       <!-- Submit -->
       <div class="col-auto">
@@ -73,7 +74,7 @@
   </form>
 
   <!-- Table des utilisateurs -->
-  <div *ngIf="users.length > 0; else noUsers" class="table-responsive mt-5 shadow-sm p-3 rounded-3">
+  <div *ngIf="userDtos.length > 0; else noUsers" class="table-responsive mt-5 shadow-sm p-3 rounded-3">
     <table class="table table-bordered table-hover align-middle">
       <thead class="table-light">
       <tr>
@@ -82,27 +83,29 @@
         <th scope="col">Domaine</th>
         <th scope="col">Langue</th>
         <th scope="col">Cours suivis</th>
-        <!--<th scope="col">Tags</th>-->
-        <th>Action</th>
+        <th scope="col">Tags</th>
+        <!--<th>Action</th>-->
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let u of users | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }">
+      <tr *ngFor="let u of userDtos | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }">
         <td class="fw-semibold">{{ u.username }}</td>
         <td>{{ u.level }}</td>
         <td>{{ u.domain }}</td>
         <td>{{ u.language }}</td>
         <td>
-          <ng-container *ngFor="let course of u.completedCoursesIds; let last = last">
-            <span class="badge bg-secondary me-1">{{ course }}</span>
+          <ng-container *ngFor="let course of u.completedLearningPath; let last = last">
+            <span class="badge bg-secondary me-1">{{ course.title }}</span>
           </ng-container>
         </td>
-        <!--<td>
-          <ng-container *ngFor="let tag of u.completedCoursesTags; let last = last">
-            <span class="badge bg-info text-dark me-1">{{ tag }}</span>
+        <td>
+          <ng-container *ngFor="let course of u.completedLearningPath; let last = last">
+            <ng-container *ngFor="let tag of course.tags; let last = last">
+              <span class="badge bg-info text-dark me-1">{{tag}}</span>
+            </ng-container>
           </ng-container>
-        </td>-->
-        <td><button type="button" class="btn btn-primary" (click)="updateUser(u.id)"><i class="fa fa-edit"></i></button></td>
+        </td>
+        <!--<td><button type="button" class="btn btn-primary" (click)="updateUser(u.id)"><i class="fa fa-edit"></i></button></td>-->
       </tr>
       </tbody>
     </table>

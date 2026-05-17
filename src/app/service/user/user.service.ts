@@ -30,6 +30,10 @@ export class UserService {
     return this.httpClient.get(this.baseUrl+"/etudiant/get/"+id)
   }
 
+  getAllDomains(): Observable<any> {
+    return this.httpClient.get(this.baseUrl+"/cours/find/all/domains")
+  }
+
   login(userCredentials: UserCredentials): Observable<any> {
     return this.httpClient.post(this.baseUrl+"/etudiant/login", userCredentials)
   }
