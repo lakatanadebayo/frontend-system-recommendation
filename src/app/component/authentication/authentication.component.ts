@@ -29,6 +29,10 @@ export class AuthenticationComponent implements OnInit {
     this.authenticationForm = this.formBuilder.group({
       username: [null],
       password: [null]})
+
+    this.dataService.authStatus$.subscribe(authStatus => {
+      this.isAuthenticated = authStatus
+    })
   }
 
   submitAuthenticationForm(){

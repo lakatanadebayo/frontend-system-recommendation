@@ -16,10 +16,15 @@
         <h2>Connexion</h2>
         <p class="subtitle">Connectez-vous à votre espace</p>
 
+        <!-- Message d'erreur -->
+        <div class="col-12" *ngIf="!isAuthenticated && authenticationErrorMessage">
+          <div class="text-danger mb-4">{{ authenticationErrorMessage }}</div>
+        </div>
+
         <form [formGroup]="authenticationForm" (ngSubmit)="submitAuthenticationForm()">
 
           <div class="input-group">
-            <label>Email</label>
+            <label>Nom d'utilisateur</label>
             <input type="email" formControlName="username" placeholder="exemple@email.com"/>
           </div>
 
@@ -33,11 +38,14 @@
             <a href="#">Mot de passe oublié ?</a>
           </div>
 
-          <button type="submit" [disabled]="authenticationForm.invalid">Se connecter</button>
+          <div class="col-12 d-flex justify-content-between">
+            <button type="submit" [disabled]="authenticationForm.invalid">Se connecter</button>
+            <button type="button" (click)="home()" class="mx-2">Retour</button>
+          </div>
 
         </form>
 
-        <div class="register-link">Vous n'avez pas de compte ?<a href="#">Créer un compte</a></div>
+        <div class="register-link">Vous n'avez pas de compte ? <a href="#">Créer un compte</a></div>
       </div>
     </div>
 
