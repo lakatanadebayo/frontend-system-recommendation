@@ -44,27 +44,6 @@
         </select>
       </div>
 
-      <!-- Completed Courses
-      <div class="col-12 col-md-4">
-        <label for="completedCoursesIds" class="form-label fw-bold">Cours déjà suivis</label>
-        <div class="input-group">
-          <input #courseIdInput type="text" id="completedCoursesIds" class="form-control" placeholder="ID du cours">
-          <button type="button" class="btn btn-primary" (click)="addCourseId(courseIdInput.value); courseIdInput.value=''">Ajouter</button>
-        </div>
-
-        <div class="d-flex flex-wrap gap-2">
-          <span *ngFor="let c of completedCoursesIds.controls; let i = index"
-                class="badge bg-secondary d-flex align-items-center p-2">
-            {{ c.value }}
-            <button type="button"
-                    class="btn-close btn-close-white ms-2"
-                    aria-label="Supprimer"
-                    (click)="removeCourseId(i)">
-            </button>
-          </span>
-        </div>
-      </div> -->
-
       <!-- Submit -->
       <div class="col-auto">
         <button type="submit" class="btn btn-success px-4">Enregistrer</button>

@@ -1,32 +1,4 @@
 <div class="container my-4">
-  <form [formGroup]="learningPathForm" (ngSubmit)="submitLearningPathFormForm()" class="card p-4 shadow-sm rounded-3">
-    <div class="row g-3 align-items-end">
-      <div class="col-12 col-md-4">
-        <label for="username" class="form-label fw-bold">
-          Nom d'utilisateur <span class="text-danger">*</span>
-        </label>
-        <input
-          type="text"
-          id="username"
-          formControlName="username"
-          class="form-control"
-          placeholder="Entrez un nom d'utilisateur"
-          aria-required="true">
-        <div *ngIf="learningPathForm.get('username')?.invalid && learningPathForm.get('username')?.touched" class="text-danger small mt-1">
-          Le nom d'utilisateur est requis.
-        </div>
-      </div>
-      <div class="col-auto">
-        <button
-          type="submit"
-          class="btn btn-success px-4"
-          [disabled]="learningPathForm.invalid">
-          Rechercher
-        </button>
-      </div>
-    </div>
-  </form>
-
   <div *ngIf="learningPaths.length > 0; else noResults" class="table-responsive mt-5 shadow-sm p-3 rounded-3">
     <table class="table table-bordered table-hover align-middle">
       <thead class="table-light">

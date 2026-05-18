@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UserDefaultService} from "../../service/user-default/user-default.service";
 import {Subject, takeUntil} from "rxjs";
 import {MenuItem} from "../../entity/MenuItem";
+import {User} from "../../entity/User";
 
 @Component({
   selector: 'app-top-menu',
@@ -13,6 +14,7 @@ import {MenuItem} from "../../entity/MenuItem";
 export class TopMenuComponent implements OnInit, OnDestroy {
 
   localAuthStatus: boolean = false
+  localUser: User
 
   menuItems: MenuItem[] = [
     { label: 'Utilisateur', route: '/app/home/user' },
@@ -46,7 +48,9 @@ export class TopMenuComponent implements OnInit, OnDestroy {
   signOut() {
     this.dataService.setAuthStatus(false)
     this.dataService.setUser(this.userDefaultService.getDefaultUser())
-    this.router.navigate(['app/home/recommandation'])
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['app/home/recommandation'])
+    })
   }
 
 }

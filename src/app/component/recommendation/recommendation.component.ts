@@ -30,8 +30,8 @@ export class RecommendationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.initLearningPathForm()
     this.getAuthStatusFromDataService()
+    this.getUserFromDataService()
   }
 
   ngOnDestroy(): void {
@@ -46,36 +46,27 @@ export class RecommendationComponent implements OnInit, OnDestroy {
   }
 
   getUserFromDataService(): void {
-    this.dataService.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
-      this.localUser = user
-    })
-  }
+    this.dataService.user$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(user => {
+        this.localUser = user;
 
-  initLearningPathForm(){
-    this.learningPathForm = this.formBuilder.group({
-      username: ['']
-    })
+        if (user?.username) {
+          this.getRecommendationByUsername(user.username);
+        }
+      });
   }
 
   getRecommendationByUsername(username: string){
+    console.log('debut traitement :')
     this.recommendationService.getRecommendationByUsername(username).subscribe({
       next: learningPathsFromApi => {
+        console.log(learningPathsFromApi)
         this.learningPaths = learningPathsFromApi;
+        console.log('this.learningPaths :'+this.learningPaths)
       },
       error: error => console.log(error)
     })
-  }
-
-  submitLearningPathFormForm(){
-    const learningPathFormValues = this.learningPathForm.value
-    const username = learningPathFormValues['username']
-
-    if (!username || username.trim() === '') {
-      this.learningPaths = []
-      return
-    }
-
-    this.getRecommendationByUsername(username)
   }
 
   terminerCours(id: any) {
