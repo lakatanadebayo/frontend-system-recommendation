@@ -1,4 +1,4 @@
-:host {
+/*:host {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -6,4 +6,110 @@
 
 router-outlet {
   flex: 1;
+}*/
+
+/* GLOBAL */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #0f172a;
+}
+
+/* CONTAINER PRINCIPAL */
+
+.content-area {
+  min-height: 100vh;
+  width: 100%;
+
+  background: linear-gradient(
+      135deg,
+      #1e293b 0%,
+      #0f172a 100%
+  );
+
+  padding: 40px 0;
+}
+
+/* HERO */
+
+.hero-section {
+  height: 300px;
+
+  background: linear-gradient(
+      135deg,
+      #0d6efd,
+      #6610f2
+  );
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* CARDS */
+
+.recommendation-card {
+  background: rgba(255,255,255,0.97);
+
+  border-radius: 20px;
+
+  transition: all 0.3s ease;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+
+  backdrop-filter: blur(6px);
+}
+
+.recommendation-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* RESOURCE BOX */
+
+.resource-box {
+  background: #f1f5f9;
+
+  padding: 15px;
+
+  border-radius: 15px;
+
+  margin-bottom: 15px;
+}
+
+/* EMPTY STATE */
+
+.empty-state {
+  background: rgba(255,255,255,0.96);
+
+  border-radius: 20px;
+
+  padding: 60px;
+
+  text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+
+  .hero-section {
+    height: 220px;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
 }
