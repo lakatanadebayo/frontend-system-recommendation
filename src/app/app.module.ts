@@ -12,6 +12,7 @@ import {AuthenticationModule} from "./module/authentication/authentication.modul
 import {HomeModule} from "./module/home/home.module";
 import {RessourceModule} from "./module/home/ressource/ressource.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import {CustomRecommandationModule} from "./module/home/custom-recommandation/custom-recommandation.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     RessourceModule,
     TopMenuModule,
     AuthenticationModule,
-    HomeModule
+    HomeModule,
+    CustomRecommandationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

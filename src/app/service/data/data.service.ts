@@ -17,6 +17,9 @@ export class DataService {
   private user = new BehaviorSubject<User>(this.userDefaultService.getDefaultUser());
   user$ = this.user.asObservable();
 
+  private username = new BehaviorSubject<string>('test');
+  username$ = this.username.asObservable();
+
   constructor(private userDefaultService: UserDefaultService) { }
 
   setIsUpdateProcess(isUpdateProcess: boolean) {
@@ -29,5 +32,9 @@ export class DataService {
 
   setUser(user: User) {
     this.user.next(user);
+  }
+
+  setUsername(username: string) {
+    this.username.next(username);
   }
 }

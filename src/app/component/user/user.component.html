@@ -68,7 +68,12 @@
       </thead>
       <tbody>
       <tr *ngFor="let u of userDtos | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }">
-        <td class="fw-semibold">{{ u.username }}</td>
+        <td class="fw-semibold">
+          <span class="text-primary" style="cursor:pointer"
+                (click)="setUsernameInDataService(u.username)">
+            {{ u.username }}
+          </span>
+        </td>
         <td>{{ u.level }}</td>
         <td>{{ u.domain }}</td>
         <td>{{ u.language }}</td>

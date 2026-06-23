@@ -34,7 +34,7 @@
                 </span>
 
                 <span class="badge bg-secondary">
-                  {{ lp.language | languageLabel }}
+                  {{ lp.language }}
                 </span>
 
               </div>
@@ -81,21 +81,6 @@
 
             </div>
 
-            <!-- CARD FOOTER -->
-            <div class="card-footer bg-white border-0 pt-0">
-
-              <button
-                [hidden]="!localAuthStatus"
-                (click)="terminerCours(lp.id)"
-                class="btn btn-success w-100 rounded-pill">
-
-                <i class="fa fa-check-circle me-2"></i>
-
-                Terminer le cours
-
-              </button>
-
-            </div>
 
           </div>
 

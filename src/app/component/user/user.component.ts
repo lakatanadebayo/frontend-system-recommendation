@@ -7,7 +7,7 @@ import {DataService} from "../../service/data/data.service";
 import {UserDto} from "../../entity/UserDto";
 import {RessourceService} from "../../service/ressource/ressource.service";
 import {LearningPath} from "../../entity/LearningPath";
-import {forkJoin, map, switchMap} from "rxjs";
+import {RecommendationService} from "../../service/recommendation/recommendation.service";
 
 @Component({
   selector: 'app-user',
@@ -22,6 +22,7 @@ export class UserComponent implements OnInit {
   userDtos: UserDto[] = []
   domains: string[] = []
   learningPaths: LearningPath[] = []
+  recommandedLearningPaths: LearningPath[] = []
   userForm: FormGroup
   id: any = null
 
@@ -37,7 +38,8 @@ export class UserComponent implements OnInit {
   sortColumn = ''
   sortDirection = 'asc'
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private ressourceService: RessourceService, private router: Router, private activatedRoute: ActivatedRoute, private dataService: DataService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private ressourceService: RessourceService,
+              private router: Router, private activatedRoute: ActivatedRoute,  private recommendationService : RecommendationService, private dataService: DataService) {
   }
 
   ngOnInit(): void {
@@ -158,6 +160,11 @@ export class UserComponent implements OnInit {
 
   submitUserForm(){
     this.saveUser()
+  }
+
+  setUsernameInDataService(username: string){
+    this.dataService.setUsername(username)
+    this.router.navigate(['app/home/custom-recommandation'])
   }
 
   getRequestParams(page: number, pageSize: number): any {

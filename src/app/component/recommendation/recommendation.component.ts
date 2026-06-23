@@ -58,12 +58,9 @@ export class RecommendationComponent implements OnInit, OnDestroy {
   }
 
   getRecommendationByUsername(username: string){
-    console.log('debut traitement :')
     this.recommendationService.getRecommendationByUsername(username).subscribe({
       next: learningPathsFromApi => {
-        console.log(learningPathsFromApi)
         this.learningPaths = learningPathsFromApi;
-        console.log('this.learningPaths :'+this.learningPaths)
       },
       error: error => console.log(error)
     })
