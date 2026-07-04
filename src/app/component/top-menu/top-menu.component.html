@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container container-fluid">
     <a routerLink="/app" class="navbar-brand">
       <img src="" alt="" class="d-inline-block align-text-top">
@@ -12,6 +12,138 @@
         <button type="button" class="btn btn-outline-success ms-1" [hidden]="localAuthStatus" (click)="signIn()"><i class="fa fa-sign-in"></i></button>
         <button type="button" class="btn btn-outline-danger ms-1" [hidden]="!localAuthStatus" (click)="signOut()"><i class="fa fa-sign-out"></i></button>
       </form>
+    </div>
+  </div>
+</nav>-->
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+
+    &lt;!&ndash; Logo &ndash;&gt;
+    <a routerLink="/app" class="navbar-brand d-flex align-items-center">
+      <img src="assets/logo.svg" alt="Logo" height="32" class="me-2">
+      <span class="fw-bold">MonApp</span>
+    </a>
+
+    &lt;!&ndash; Mobile toggle &ndash;&gt;
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    &lt;!&ndash; Menu &ndash;&gt;
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item" *ngFor="let item of menuItems">
+          <a [routerLink]="item.route"
+             routerLinkActive="active"
+             class="nav-link px-3">
+            <i class="me-1"></i> {{ item.label }}
+          </a>
+        </li>
+
+      </ul>
+
+      &lt;!&ndash; Auth buttons &ndash;&gt;
+      <div class="d-flex ms-lg-3">
+        <button type="button" class="btn btn-outline-success"
+                [hidden]="localAuthStatus" (click)="signIn()">
+          <i class="fa fa-sign-in me-1"></i> Connexion
+        </button>
+
+        <button type="button" class="btn btn-outline-danger"
+                [hidden]="!localAuthStatus" (click)="signOut()">
+          <i class="fa fa-sign-out me-1"></i> Déconnexion
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>-->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <i class="fa fa-graduation-cap me-2"></i>
+      DevLearn
+    </a>
+
+    <!-- Bouton mobile -->
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <ul class="navbar-nav me-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">
+            <i class="fa fa-home me-1"></i> Accueil
+          </a>
+        </li>
+
+        <!--<li class="nav-item">
+          <a class="nav-link" routerLink="/app/home/recommandation">
+            <i class="fa fa-lightbulb-o me-1"></i> Recommandations
+          </a>
+        </li>-->
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/app/home/ressource">
+            <i class="fa fa-book me-1"></i> Cours
+          </a>
+        </li>
+
+        <!--<li class="nav-item">
+          <a class="nav-link" routerLink="/history">
+            <i class="fa fa-history me-1"></i> Historique
+          </a>
+        </li>-->
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/app/home/user">
+            <i class="fa fa-user me-1"></i>Etudiants
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- Barre de recherche -->
+      <!--<form class="d-flex me-3">
+        <input
+          class="form-control form-control-sm"
+          type="search"
+          placeholder="Rechercher une technologie..."
+        />
+      </form>-->
+
+      <!-- Authentification -->
+      <div class="d-flex">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          [hidden]="localAuthStatus"
+          (click)="signIn()">
+          <i class="fa fa-sign-in me-1"></i> Connexion
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          [hidden]="!localAuthStatus"
+          (click)="signOut()">
+          <i class="fa fa-sign-out me-1"></i> Déconnexion
+        </button>
+      </div>
+
     </div>
   </div>
 </nav>

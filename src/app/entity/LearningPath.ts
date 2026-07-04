@@ -14,6 +14,7 @@ export class LearningPath {
     public level: string = '',
     public domain: string = '',
     public language?: string,
+    public orderIndex: string = '',
     public prerequisiteCourseIds: string[] = [],
     public objectives: string[] = [],
     public content: string[] = [],

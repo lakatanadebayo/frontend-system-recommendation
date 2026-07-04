@@ -4,17 +4,18 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RecommendationRoutingModule} from "./recommendation-routing.module";
 import {RecommendationComponent} from "../../../component/recommendation/recommendation.component";
-import {LanguageLabelPipe} from "../../../pipe/LanguageLabelPipe";
+import {ShareModule} from "../../share/share.module";
 
 
 @NgModule({
-  declarations: [RecommendationComponent, LanguageLabelPipe],
+  declarations: [RecommendationComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RecommendationRoutingModule
+    RecommendationRoutingModule,
+    ShareModule
   ]
 })
 export class RecommendationModule { }

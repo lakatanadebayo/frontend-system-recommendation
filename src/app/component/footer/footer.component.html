@@ -1,4 +1,4 @@
-<footer class="text-center text-lg-start bg-light text-muted mt-5">
+<!--<footer class="text-center text-lg-start bg-light text-muted mt-5">
 
   <section>
     <div class="container text-center text-md-start mt-1">
@@ -6,4 +6,101 @@
     </div>
   </section>
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">© {{currentYear}} <a class="text-reset fw-bold" routerLink="/">{{srce}}</a>, tous droits réservés</div>
+</footer>-->
+
+
+<!--<footer class="footer bg-light text-center text-muted mt-5 border-top">
+  <div class="container py-4">
+
+    <div class="mb-3">
+      <a routerLink="/" class="text-decoration-none fw-bold text-dark">
+        {{ srce }}
+      </a>
+    </div>
+
+    <div class="small">
+      © {{ currentYear }} — Tous droits réservés
+    </div>
+
+    <div class="mt-2">
+      <a href="#" class="text-muted me-3">Confidentialité</a>
+      <a href="#" class="text-muted me-3">Conditions</a>
+      <a href="#" class="text-muted">Contact</a>
+    </div>
+
+  </div>
+</footer>-->
+
+<footer class="bg-dark text-light mt-5">
+
+  <div class="container py-5">
+
+    <div class="row">
+
+      <!-- Présentation -->
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold">
+          <i class="fa fa-graduation-cap me-2"></i>
+          DevLearn
+        </h5>
+
+        <p class="small">
+          Plateforme intelligente de recommandation pédagogique
+          destinée aux développeurs informatiques.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div class="col-md-3 mb-4">
+        <h6 class="fw-bold">Navigation</h6>
+
+        <ul class="list-unstyled">
+          <li><a routerLink="/" class="text-decoration-none text-light">Accueil</a></li>
+          <li><a routerLink="/recommendations" class="text-decoration-none text-light">Recommandations</a></li>
+          <li><a routerLink="/courses" class="text-decoration-none text-light">Parcours</a></li>
+          <li><a routerLink="/profile" class="text-decoration-none text-light">Profil</a></li>
+        </ul>
+      </div>
+
+      <!-- Ressources -->
+      <div class="col-md-3 mb-4">
+        <h6 class="fw-bold">Ressources</h6>
+
+        <ul class="list-unstyled">
+          <li>Java</li>
+          <li>Spring Boot</li>
+          <li>Angular</li>
+          <li>Web Sémantique</li>
+        </ul>
+      </div>
+
+      <!-- Réseaux -->
+      <div class="col-md-2 mb-4">
+        <h6 class="fw-bold">Suivez-nous</h6>
+
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-light">
+            <i class="fab fa-github"></i>
+          </a>
+
+          <a href="#" class="text-light">
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a href="#" class="text-light">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="text-center py-3 border-top border-secondary">
+    © {{currentYear}} {{srce}} |
+    Tous droits réservés |
+    Version 1.0
+  </div>
+
 </footer>
